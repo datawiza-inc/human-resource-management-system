@@ -38,7 +38,8 @@ import javax.servlet.http.HttpSession;
 		"/deletedept",
 		"/deleteleave",
 		"/statuslist",
-		"/deletestatus"
+		"/deletestatus",
+        "/loginadmin"
 })
 
 public class AdminServlet extends HttpServlet {
@@ -57,6 +58,9 @@ public class AdminServlet extends HttpServlet {
             switch (action) {
                 case "/":
                     redirectToHome(request, response);
+                    break;
+                case "/loginadmin":
+                    preauthAdminLogin(request, response);
                     break;
                 case "/emplist":
                     getEmployees(request, response);
@@ -307,6 +311,17 @@ public class AdminServlet extends HttpServlet {
 
     }
 
+    private void preauthAdminLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        // Logged-in users will be redirected away from the login page
+        HttpSession session = request.getSession();
+        if(session.getAttribute("username") != null) response.sendRedirect("adminNavbar.jsp");
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("loginadmin.jsp");
+        dispatcher.forward(request, response);
+
+    }
+
     private void adminlogin(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         String userNameString = request.getParameter("username");
         String passwordString = request.getParameter("password");
@@ -327,7 +342,7 @@ public class AdminServlet extends HttpServlet {
             session.setAttribute("password", passwordString);
             response.sendRedirect("adminNavbar.jsp");
         } else {
-            response.sendRedirect("loginadmin.jsp");
+            response.sendRedirect("loginadmin");
         }
     }
 
@@ -335,7 +350,7 @@ public class AdminServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("username");
         session.invalidate();
-        response.sendRedirect("loginadmin.jsp");
+        response.sendRedirect("loginadmin");
     }
 
 }
