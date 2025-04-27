@@ -164,6 +164,23 @@ public class AdminDaoImpl implements AdminDao {
         return messageString;
     }
 
+    public boolean isUserExist(String username) {
+        boolean result = false;
+        try (Connection conn = DB_Connect.getConnection()) {
+
+            PreparedStatement ps = conn.prepareStatement("SELECT * from admin where username=? ");
+
+            ps.setString(1, username);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) result = true;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return result;
+    }
+
     @Override
     public String loginAdmin(String username, int password) throws EmployeeException {
         String messageString = "Something went wrong!..";

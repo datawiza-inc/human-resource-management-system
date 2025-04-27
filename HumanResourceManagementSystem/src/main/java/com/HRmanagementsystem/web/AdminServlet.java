@@ -38,7 +38,8 @@ import javax.servlet.http.HttpSession;
 		"/deletedept",
 		"/deleteleave",
 		"/statuslist",
-		"/deletestatus"
+		"/deletestatus",
+        "/loginadmin"
 })
 
 public class AdminServlet extends HttpServlet {
@@ -57,6 +58,9 @@ public class AdminServlet extends HttpServlet {
             switch (action) {
                 case "/":
                     redirectToHome(request, response);
+                    break;
+                case "/loginadmin":
+                    adminLoginByHeader(request, response);
                     break;
                 case "/emplist":
                     getEmployees(request, response);
@@ -304,6 +308,21 @@ public class AdminServlet extends HttpServlet {
         String message = dao.deleteOldStatus(id);
 
         response.sendRedirect("message.jsp" + URLEncoder.encode(message, "UTF-8"));
+
+    }
+
+    private void adminLoginByHeader(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String usernameFromHeader = request.getHeader("x-dw-username");
+        if(usernameFromHeader != null) {
+            if(dao.isUserExist(usernameFromHeader)) {
+                HttpSession session = request.getSession();
+                session.setAttribute("username", usernameFromHeader);
+                response.sendRedirect("adminNavbar.jsp");
+            }
+        }
+        // header auth fail, but we can allow user to continue use password login
+        RequestDispatcher dispatcher = request.getRequestDispatcher("loginadmin.jsp");
+        dispatcher.forward(request, response);
 
     }
 
