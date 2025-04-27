@@ -359,7 +359,7 @@ public class AdminServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("username");
         session.invalidate();
-        response.sendRedirect("loginadmin");
+        response.sendRedirect("/datawiza/ab-logout");
     }
 
 }
