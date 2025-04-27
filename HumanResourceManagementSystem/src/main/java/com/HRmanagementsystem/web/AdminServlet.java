@@ -60,7 +60,7 @@ public class AdminServlet extends HttpServlet {
                     redirectToHome(request, response);
                     break;
                 case "/loginadmin":
-                    adminLoginByHeader(request, response);
+                    preauthAdminLogin(request, response);
                     break;
                 case "/emplist":
                     getEmployees(request, response);
@@ -311,16 +311,21 @@ public class AdminServlet extends HttpServlet {
 
     }
 
-    private void adminLoginByHeader(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void preauthAdminLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        // Logged-in users will be redirected away from the login page
+        HttpSession session = request.getSession();
+        if(session.getAttribute("username") != null) response.sendRedirect("adminNavbar.jsp");
+
         String usernameFromHeader = request.getHeader("x-dw-username");
         if(usernameFromHeader != null) {
             if(dao.isUserExist(usernameFromHeader)) {
-                HttpSession session = request.getSession();
                 session.setAttribute("username", usernameFromHeader);
                 response.sendRedirect("adminNavbar.jsp");
             }
         }
-        // header auth fail, but we can allow user to continue use password login
+        // If header-based authentication fails, the system permits password login as a fallback
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("loginadmin.jsp");
         dispatcher.forward(request, response);
 
@@ -346,7 +351,7 @@ public class AdminServlet extends HttpServlet {
             session.setAttribute("password", passwordString);
             response.sendRedirect("adminNavbar.jsp");
         } else {
-            response.sendRedirect("loginadmin.jsp");
+            response.sendRedirect("loginadmin");
         }
     }
 
@@ -354,7 +359,7 @@ public class AdminServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("username");
         session.invalidate();
-        response.sendRedirect("loginadmin.jsp");
+        response.sendRedirect("loginadmin");
     }
 
 }
