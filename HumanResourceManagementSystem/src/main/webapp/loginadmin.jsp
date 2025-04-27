@@ -35,10 +35,23 @@
             color: white;
 
           }
+
+          .username-hint {
+            text-align: center;
+            border: 1px solid;
+            width: 400px;
+            background: aliceblue;
+            padding: 20px;
+            margin: 0 auto;
+          }
         </style>
         <title>login</title>
       </head>
       <h1> ADMIN LOGIN</h1>
+      <div class="username-hint">
+        <div>Default username: admin</div>
+        <div>Default password: 1234</div>
+      </div>
       <form action="adminlogin" method="post">
 
         Enter username: <input type="text" name="username" placeholder="Enter your username">
@@ -47,6 +60,5 @@
         <input type="submit" style="background-color: blue; color:white;" value="login">
       </form>
 
-      <h1><a href="home.jsp">Home</a></h1>
 
       </html>

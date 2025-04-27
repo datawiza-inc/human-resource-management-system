@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet({
+        "/",
 		"/newDepartment",
 		"/addProject",
 		"/addManager",
@@ -54,6 +55,9 @@ public class AdminServlet extends HttpServlet {
 
         try {
             switch (action) {
+                case "/":
+                    redirectToHome(request, response);
+                    break;
                 case "/emplist":
                     getEmployees(request, response);
                     break;
@@ -129,6 +133,9 @@ public class AdminServlet extends HttpServlet {
         } catch (Exception e) {
             // TODO: handle exception
         }
+    }
+    private void redirectToHome(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, UnsupportedEncodingException, IOException {
+        response.sendRedirect("adminNavbar.jsp");
     }
 
     private void createDepartment(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, UnsupportedEncodingException, IOException {

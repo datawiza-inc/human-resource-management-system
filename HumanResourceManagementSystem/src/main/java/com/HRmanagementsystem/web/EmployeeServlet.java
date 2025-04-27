@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/")
+
 public class EmployeeServlet extends HttpServlet {
 
     private EmployeeDao dao;
@@ -37,9 +37,7 @@ public class EmployeeServlet extends HttpServlet {
 
         try {
             switch (action) {
-				case "/":
-					redirectToHome(request, response);
-					break;
+
                 case "/logoutemp":
                     logout(request, response);
                     break;
@@ -56,9 +54,7 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 
-	private void redirectToHome(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, UnsupportedEncodingException, IOException {
-		response.sendRedirect("home.jsp");
-	}
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();

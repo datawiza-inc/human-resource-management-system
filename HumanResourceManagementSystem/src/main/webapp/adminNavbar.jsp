@@ -4,8 +4,7 @@
 
 	<head>
 		<title>Admin Home</title>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="/static/css/bootstrap-4.6.1.min.css">
 		<style type="text/css">
 			#nav {
 				background: #160046;
@@ -16,7 +15,7 @@
 			}
 
 			body {
-				background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20201101/pngtree-3d-rendering-for-display-product-banner-on-website-image_453005.jpg');
+				background-image: url('/static/image/pngtree-3d-rendering-for-display-product-banner-on-website-image_453005.jpg');
 				background-repeat: no-repeat;
 				background-attachment: fixed;
 				background-size: cover;
@@ -43,6 +42,7 @@
 			if(session.getAttribute("username")==null) response.sendRedirect("loginadmin.jsp");
 		%>
 			<header>
+
 				<nav id="nav" class="navbar navbar-expand-md navbar-dark">
 					<div>
 						<a class="navbar-brand">
@@ -67,7 +67,5 @@
 
 			<br>
 	</body>
-
-	</html>
 
 	</html>
