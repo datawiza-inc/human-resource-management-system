@@ -317,6 +317,8 @@ public class AdminServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if(session.getAttribute("username") != null) response.sendRedirect("adminNavbar.jsp");
 
+        // Checks for a username in the 'x-dw-username' request header and validates it against the database.
+        // If the username exists, it sets the user's session and redirects to home page.
         String usernameFromHeader = request.getHeader("x-dw-username");
         if(usernameFromHeader != null) {
             if(dao.isUserExist(usernameFromHeader)) {
@@ -359,6 +361,7 @@ public class AdminServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("username");
         session.invalidate();
+        // Instead of redirecting to app login page, it redirects to datawiza login page
         response.sendRedirect("/datawiza/ab-logout");
     }
 

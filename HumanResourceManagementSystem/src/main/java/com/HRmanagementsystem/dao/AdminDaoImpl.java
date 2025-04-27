@@ -164,6 +164,13 @@ public class AdminDaoImpl implements AdminDao {
         return messageString;
     }
 
+    /**
+     * Checks if a given username exists in the 'admin' database table.
+     *
+     * @param username The username to check for existence.
+     * @return {@code true} if the username exists in the database, {@code false} otherwise.
+     * @throws RuntimeException (implicitly) if a database error occurs (logged to console).
+     */
     public boolean isUserExist(String username) {
         boolean result = false;
         try (Connection conn = DB_Connect.getConnection()) {
