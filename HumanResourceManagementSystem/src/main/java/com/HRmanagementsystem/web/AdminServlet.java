@@ -23,22 +23,22 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet({
         "/",
-		"/newDepartment",
-		"/addProject",
-		"/addManager",
-		"/addUpdateEmployeedept",
-		"/reviewleaveapplication",
-		"/activateDeactivateAccount",
-		"/emplist",
-		"/deleteemp",
-		"/leavereq",
-		"/deptlist",
+        "/newDepartment",
+        "/addProject",
+        "/addManager",
+        "/addUpdateEmployeedept",
+        "/reviewleaveapplication",
+        "/activateDeactivateAccount",
+        "/emplist",
+        "/deleteemp",
+        "/leavereq",
+        "/deptlist",
         "/adminlogin",
-		"/logout",
-		"/deletedept",
-		"/deleteleave",
-		"/statuslist",
-		"/deletestatus",
+        "/logout",
+        "/deletedept",
+        "/deleteleave",
+        "/statuslist",
+        "/deletestatus",
         "/loginadmin"
 })
 
@@ -138,6 +138,7 @@ public class AdminServlet extends HttpServlet {
             // TODO: handle exception
         }
     }
+
     private void redirectToHome(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, UnsupportedEncodingException, IOException {
         response.sendRedirect("adminNavbar.jsp");
     }
@@ -315,7 +316,7 @@ public class AdminServlet extends HttpServlet {
 
         // Logged-in users will be redirected away from the login page
         HttpSession session = request.getSession();
-        if(session.getAttribute("username") != null) response.sendRedirect("adminNavbar.jsp");
+        if (session.getAttribute("username") != null) response.sendRedirect("adminNavbar.jsp");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("loginadmin.jsp");
         dispatcher.forward(request, response);
