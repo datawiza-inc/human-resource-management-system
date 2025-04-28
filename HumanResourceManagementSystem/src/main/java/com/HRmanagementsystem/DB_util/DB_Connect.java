@@ -15,7 +15,7 @@ public class DB_Connect {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/construct_week2";
+        String url = System.getenv().getOrDefault("DATABASE_URL", "jdbc:mysql://localhost:3306/construct_week2");
         try {
             conn= DriverManager.getConnection(url,"root","psrootpswd");
         }

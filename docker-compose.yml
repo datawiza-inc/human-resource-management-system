@@ -1,0 +1,27 @@
+services:
+  datawiza-hrm-app-db:
+    image: datawiza-hrm-app-db
+    container_name: datawiza-hrm-app-db
+    ports:
+      - "3306:3306"
+
+  datawiza-hrm-app-orignal:
+    image: registry.gitlab.com/datawiza/header-based-app:orignal
+    container_name: datawiza-hrm-app-orignal
+    ports:
+      - "8080:8080"
+    depends_on:
+      - datawiza-hrm-app-db
+    environment:
+      DATABASE_URL: jdbc:mysql://datawiza-hrm-app-db:3306/construct_week2
+
+
+  datawiza-hrm-app-header-auth:
+    image: registry.gitlab.com/datawiza/header-based-app:header-auth
+    container_name: datawiza-hrm-app-header-auth
+    ports:
+      - "8990:8080"
+    depends_on:
+      - datawiza-hrm-app-db
+    environment:
+      DATABASE_URL: jdbc:mysql://datawiza-hrm-app-db:3306/construct_week2
