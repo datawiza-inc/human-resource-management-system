@@ -171,21 +171,27 @@ public class AdminDaoImpl implements AdminDao {
      * @return {@code true} if the username exists in the database, {@code false} otherwise.
      * @throws RuntimeException (implicitly) if a database error occurs (logged to console).
      */
-    public boolean isUserExist(String username) {
-        boolean result = false;
-        try (Connection conn = DB_Connect.getConnection()) {
-
-            PreparedStatement ps = conn.prepareStatement("SELECT * from admin where username=? ");
-
-            ps.setString(1, username);
-
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) result = true;
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+    @Override
+    public boolean userExists(String username) {
+        if (username == null || username.trim().isEmpty()) {
+            return false;
         }
-        return result;
+
+        final String query = "SELECT 1 FROM admin WHERE username = ? LIMIT 1";
+
+        try (Connection conn = DB_Connect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, username.trim());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            // any other exceptions
+            // some code to handle the exception properly
+        }
+        return false;
     }
 
     @Override
