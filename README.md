@@ -1,12 +1,26 @@
 # Human Resource Management System (Full Stack Project)
 
-![HRMS](https://user-images.githubusercontent.com/69399810/215176739-ebe7942e-b949-45bb-9af5-5474ea1cf503.png)
-
 ## Overview
 
-The Human Resource Management System is a comprehensive full-stack Java-based web application developed from scratch by [3dharmadev](https://github.com/3dharmadev). This application is designed to streamline HR operations within an organization, allowing administrators to manage departments, employees, projects, and leave requests efficiently.
+The Human Resource Management System is a comprehensive full-stack Java-based web application. This application is designed to streamline HR operations within an organization, allowing administrators to manage departments, employees, projects, and leave requests efficiently.
 
-## Role of Admin
+## Build and Run
+
+This project is Docker-ready. Follow these steps to build and run:
+
+1. Build the application:
+
+    ```bash
+    sh ./scripts/build.sh
+    ```
+
+1. Start the services:
+
+    ```bash
+    docker compose up -d
+    ```
+
+## Functions
 
 - Department Management: Admin can add and delete new departments, view department details, and assign managers and projects to departments.
 
@@ -14,19 +28,15 @@ The Human Resource Management System is a comprehensive full-stack Java-based we
 
 - User Authentication: Admin can log in and out of the website.
 
+## Screenshots
+
+### User Login
+
 ![Admin Login](https://user-images.githubusercontent.com/69399810/215173006-87684555-ae58-4b34-89a2-0171d7218eca.png)
 
-## Role of Employee
-
-- Profile Management: Employees can view their profile details, including department, manager, and project information.
-
-- Leave Requests: Employees can request leaves, view their leave request history, and track project completion status.
-
-- User Authentication: Employees can log in and out of the website.
+### Employee List
 
 ![Employee List](https://user-images.githubusercontent.com/69399810/215175168-6b081382-ea20-4b10-a24a-53fbf7654139.png)
-
-## Screenshots
 
 ### Department List
 
