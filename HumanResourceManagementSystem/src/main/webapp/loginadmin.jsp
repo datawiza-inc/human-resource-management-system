@@ -5,7 +5,7 @@
       <html>
 
       <head>
-        <title>admin login</title>
+        <title>user login</title>
         <meta charset="ISO-8859-1">
         <style>
           form {
@@ -47,15 +47,15 @@
         </style>
         <title>login</title>
       </head>
-      <h1> ADMIN LOGIN</h1>
+      <h1> USER LOGIN</h1>
       <div class="username-hint">
-        <div>Default username: admin</div>
+        <div>Default username: grodgers</div>
         <div>Default password: 1234</div>
       </div>
       <form action="adminlogin" method="post">
 
         Enter username: <input type="text" name="username" placeholder="Enter your username">
-        Enter password: <input type="password" name="password" placeholder="Must be in Number">
+        Enter password: <input type="password" name="password" placeholder="Enter your password">
 
         <input type="submit" style="background-color: blue; color:white;" value="login">
       </form>

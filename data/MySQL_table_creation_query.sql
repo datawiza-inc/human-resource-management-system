@@ -4,6 +4,7 @@ CREATE TABLE admin (
 );
 
 INSERT INTO admin VALUES ('admin', 1234);
+INSERT INTO admin VALUES ('grodgers', 1234);
 
 CREATE TABLE department (
   deptId INT PRIMARY KEY AUTO_INCREMENT,
