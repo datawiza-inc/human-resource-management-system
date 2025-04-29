@@ -6,7 +6,7 @@ services:
       - "3306:3306"
 
   datawiza-hrm-app-orignal:
-    image: registry.gitlab.com/datawiza/header-based-app:orignal
+    image: registry.gitlab.com/datawiza/datawiza-hrm-app:main
     container_name: datawiza-hrm-app-orignal
     ports:
       - "8080:8080"
@@ -17,7 +17,7 @@ services:
 
 
   datawiza-hrm-app-header-auth:
-    image: registry.gitlab.com/datawiza/header-based-app:header-auth
+    image: registry.gitlab.com/datawiza/datawiza-hrm-app:header-auth-plain
     container_name: datawiza-hrm-app-header-auth
     ports:
       - "8990:8080"
