@@ -354,8 +354,7 @@ public class AdminServlet extends HttpServlet {
             session.setAttribute("password", passwordString);
             response.sendRedirect("adminNavbar.jsp");
         } else {
-            // Instead of redirecting to app login page, it redirects to datawiza login page
-            response.sendRedirect("/datawiza/ab-logout");
+            response.sendRedirect("loginadmin");
         }
     }
 
@@ -363,7 +362,8 @@ public class AdminServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("username");
         session.invalidate();
-        response.sendRedirect("loginadmin");
+        // Instead of redirecting to app login page, it redirects to datawiza login page
+        response.sendRedirect("/datawiza/ab-logout");
     }
 
 }
