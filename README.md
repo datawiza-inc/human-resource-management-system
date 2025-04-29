@@ -6,7 +6,18 @@ The Human Resource Management System is a comprehensive full-stack Java-based we
 
 ## Build and Run
 
-This project is Docker-ready. Follow these steps to build and run:
+This project is Docker-ready and supports two different branches:
+
+- **main**: The original version
+- **auth-header-plain**: Includes header-based authentication
+
+Before building, check out your preferred branch:
+
+```bash
+git checkout <branch_name>  # main or auth-header-plain
+```
+
+Then, follow these steps to build and run:
 
 1. Build the application:
 
