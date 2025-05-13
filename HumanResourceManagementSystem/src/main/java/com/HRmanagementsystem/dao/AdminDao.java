@@ -41,5 +41,6 @@ public interface AdminDao {
 
     String loginAdmin(String username, int password) throws EmployeeException;
 
-
+    boolean userExists(String username);
+    
 }
